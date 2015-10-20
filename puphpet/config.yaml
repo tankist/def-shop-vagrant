@@ -18,9 +18,6 @@ vagrantfile:
             virtualbox:
                 modifyvm:
                     natdnshostresolver1: 'on'
-                    disk_extend:
-                        file: '<path to virtual box VMs>/def-shop-data.vdi'
-                        size: 40
                 showgui: '0'
             vmware:
                 numvcpus: 1
@@ -37,7 +34,6 @@ vagrantfile:
                     - '--parser future'
         synced_folder:
             vflsf_h8uumvkgjgwt:
-                source: '<path to your project>'
                 target: /var/www/def-shop
                 sync_type: nfs
                 smb:
@@ -95,60 +91,6 @@ firewall:
 cron:
     install: '1'
     jobs: {  }
-nginx:
-    install: '0'
-    settings:
-        default_vhost: 1
-        proxy_buffer_size: 128k
-        proxy_buffers: '4 256k'
-    upstreams: {  }
-    vhosts:
-        nxv_k8ndp5hnndje:
-            server_name: awesome.dev
-            server_aliases:
-                - www.awesome.dev
-            www_root: /var/www/def-shop/
-            listen_port: '80'
-            index_files:
-                - index.html
-                - index.htm
-                - index.php
-            client_max_body_size: 1m
-            ssl: '0'
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_port: '443'
-            ssl_protocols: ''
-            ssl_ciphers: ''
-            rewrite_to_https: '1'
-            spdy: '1'
-            locations:
-                nxvl_ty1a27y0uypn:
-                    location: /
-                    autoindex: 'off'
-                    internal: 'false'
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: ''
-                    fastcgi_index: ''
-                    fastcgi_split_path: ''
-                nxvl_yti57p29k60g:
-                    location: '~ \.php$'
-                    autoindex: 'off'
-                    internal: 'false'
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: '127.0.0.1:9000'
-                    fastcgi_index: index.php
-                    fastcgi_split_path: '^(.+\.php)(/.*)$'
-                    fast_cgi_params_extra:
-                        - 'SCRIPT_FILENAME $request_filename'
-                        - 'APP_ENV dev'
-    proxies: {  }
 apache:
     install: '1'
     settings:
@@ -250,53 +192,6 @@ xdebug:
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
         xdebug.remote_cookie_expire_time: '86400'
-blackfire:
-    install: '0'
-    settings:
-        server_id: ''
-        server_token: ''
-        agent:
-            http_proxy: ''
-            https_proxy: ''
-            log_file: stderr
-            log_level: '1'
-        php:
-            agent_timeout: '0.25'
-            log_file: ''
-            log_level: '1'
-xhprof:
-    install: '0'
-wpcli:
-    install: '0'
-    version: v0.19.0
-drush:
-    install: '0'
-    version: 6.3.0
-ruby:
-    install: '1'
-    versions: {  }
-python:
-    install: '1'
-    packages: {  }
-    versions: {  }
-nodejs:
-    install: '0'
-    npm_packages: {  }
-hhvm:
-    install: '0'
-    nightly: 0
-    composer: '1'
-    composer_home: ''
-    settings: {  }
-    server_ini:
-        hhvm.server.host: 127.0.0.1
-        hhvm.server.port: '9000'
-        hhvm.log.use_log_file: '1'
-        hhvm.log.file: /var/log/hhvm/error.log
-    php_ini:
-        display_errors: 'On'
-        error_reporting: '-1'
-        date.timezone: UTC
 mysql:
     install: '1'
     settings:
@@ -306,16 +201,6 @@ mysql:
             mysqld:
                 innodb_file_per_table: 1
     adminer: '1'
-    users:
-        mysqlnu_tz8ga5d4l1ei:
-            name: luc
-            password: '<password here>'
-        mysqlnu_729y5r0k9c0a:
-            name: pixi
-            password: '<password here>'
-        mysqlnu_729y5r0k9c0b:
-            name: user
-            password: '<password here>'
     databases:
         mysqlnd_1vssrg2rn5ko:
             name: defshop_filter
@@ -329,105 +214,3 @@ mysql:
         mysqlnd_1vssrg2rn5km:
             name: defshop-prod
             sql: 
-    grants:
-        mysqlng_2in2wqjmlyqt:
-            user: luc
-            table: '*.*'
-            privileges:
-                - ALL
-        mysqlng_5u4xmqmoo53a:
-            user: pixi
-            table: '*.*'
-            privileges:
-                - ALL
-        mysqlng_5u4xmqmoo53b:
-            user: user
-            table: '*.*'
-            privileges:
-                - ALL
-mariadb:
-    install: '0'
-    settings:
-        version: '10.0'
-        root_password: '123'
-        override_options: {  }
-    adminer: 0
-    users:
-        mariadbnu_kss99fyz62gb:
-            name: dbuser
-            password: '123'
-    databases:
-        mariadbnd_1zb2j0e3t43n:
-            name: dbname
-            sql: ''
-    grants:
-        mariadbng_5tuvglcovequ:
-            user: dbuser
-            table: '*.*'
-            privileges:
-                - ALL
-postgresql:
-    install: '0'
-    settings:
-        global:
-            encoding: UTF8
-            version: '9.3'
-        server:
-            postgres_password: '123'
-    databases: {  }
-    users: {  }
-    grants: {  }
-    adminer: 0
-mongodb:
-    install: '0'
-    settings:
-        auth: 1
-        bind_ip: 127.0.0.1
-        port: '27017'
-    databases: {  }
-redis:
-    install: '0'
-    settings:
-        conf_port: '6379'
-sqlite:
-    install: '0'
-    adminer: 0
-    databases: {  }
-mailcatcher:
-    install: '0'
-    settings:
-        smtp_ip: 0.0.0.0
-        smtp_port: 1025
-        http_ip: 0.0.0.0
-        http_port: '1080'
-        mailcatcher_path: /usr/local/rvm/wrappers/default
-        from_email_method: inline
-beanstalkd:
-    install: '0'
-    settings:
-        listenaddress: 0.0.0.0
-        listenport: '11300'
-        maxjobsize: '65535'
-        maxconnections: '1024'
-        binlogdir: /var/lib/beanstalkd/binlog
-        binlogfsync: null
-        binlogsize: '10485760'
-    beanstalk_console: 0
-rabbitmq:
-    install: '0'
-    settings:
-        port: '5672'
-    users: {  }
-    vhosts: {  }
-    plugins: {  }
-elastic_search:
-    install: '0'
-    settings:
-        version: 1.4.1
-        java_install: true
-solr:
-    install: '0'
-    settings:
-        version: 4.10.2
-        port: '8984'
-
