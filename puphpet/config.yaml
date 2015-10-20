@@ -19,7 +19,7 @@ vagrantfile:
                 modifyvm:
                     natdnshostresolver1: 'on'
                     disk_extend:
-                        file: '/media/e/VM/def-shop-data.vdi'
+                        file: '<path to virtual box VMs>/def-shop-data.vdi'
                         size: 40
                 showgui: '0'
             vmware:
@@ -37,7 +37,7 @@ vagrantfile:
                     - '--parser future'
         synced_folder:
             vflsf_h8uumvkgjgwt:
-                source: /media/home/www/brightgrove/Redesign-Steven/src
+                source: '<path to your project>'
                 target: /var/www/def-shop
                 sync_type: nfs
                 smb:
