@@ -138,8 +138,8 @@ Vagrant.configure('2') do |config|
           value = value ? 'on' : 'off'
         end
 
-        if key == 'disk_extend' && ARGV[0] == "up"
-          if !value['file'].nil? && 
+        if key == 'disk_extend'
+          if !value['file'].nil? && ARGV[0] == "up" && 
             value['file'].to_s.strip.length != 0 &&
             !File.exist?(value['file'])
 

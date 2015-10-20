@@ -224,7 +224,7 @@ php:
         pecl: {  }
     ini:
         display_errors: 'On'
-        error_reporting: '-1'
+        error_reporting: '24575'
         session.save_path: /var/lib/php/session
         date.timezone: 'UTC'
         short_open_tag: 'On'
@@ -249,6 +249,7 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.remote_cookie_expire_time: '86400'
 blackfire:
     install: '0'
     settings:
@@ -308,13 +309,13 @@ mysql:
     users:
         mysqlnu_tz8ga5d4l1ei:
             name: luc
-            password: wee60feo
+            password: '<password here>'
         mysqlnu_729y5r0k9c0a:
             name: pixi
-            password: '6v=5dzF3CDrRN=VoG,2c'
+            password: '<password here>'
         mysqlnu_729y5r0k9c0b:
             name: user
-            password: password
+            password: '<password here>'
     databases:
         mysqlnd_1vssrg2rn5ko:
             name: defshop_filter
